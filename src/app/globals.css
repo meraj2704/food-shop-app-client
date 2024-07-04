@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.word-with-image {
+  position: relative;
+  display: inline-block; /* Ensures the span only takes up the width of its content */
+}
+.word-with-image:before {
+  content: ""; /* Create an empty pseudo-element */
+  position: absolute; /* Position the image absolutely */
+  top: 50%; /* Vertically center the image */
+  left: 0; /* Position the image at the beginning of the word */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  width: 100%; /* Set the width of the image */
+  height: 100%; /* Set the height of the image */
+  background-image: url("../assets/deli.png"); /* Set the image */
+  background-size: cover; /* Cover the entire space */
+  background-position: center; /* Center the image */
+  z-index: -1; /* Ensure the image is behind the word */
+}
+
+.gradient-bg {
+  opacity: 0.5;
+  background: rgb(255,255,255);
+  background: linear-gradient(103deg, rgba(255,255,255,1) 0%, rgba(250,216,187,1) 100%);
+  filter: blur(100px);
+}
