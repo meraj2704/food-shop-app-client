@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React from "react";
-import testimonials from "../../assets/testimonials.png";
+import testimonials from "../../../public/assets/testimonials.png";
 import StarIcon from "@mui/icons-material/Star";
-import jack from "../../assets/jack.png";
+import jack from "../../../public/assets/jack.png";
 
 const TestimonialsCom = () => {
   return (
-    <div className="flex justify-between items-center mx-16 my-10">
+    <div className="container mx-auto flex justify-between items-center my-10">
       <div className="w-1/2">
         <Image src={testimonials} alt="testimonials"></Image>
       </div>

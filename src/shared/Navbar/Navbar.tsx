@@ -1,8 +1,8 @@
 // components/Navbar.tsx
-"use client"
+"use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../../public/assets/logo.png";
 import HomeMenu from "@/components/navbar/DishesMenu";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";

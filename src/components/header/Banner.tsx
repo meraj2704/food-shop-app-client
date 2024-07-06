@@ -4,22 +4,22 @@ import { Avatar, AvatarGroup } from "@mui/material";
 
 import StarIcon from "@mui/icons-material/Star";
 import Image from "next/image";
-import bannerImage from "../../assets/banner_img.png";
-import jack from "../../assets/jack.png";
+import bannerImage from "../../../public/assets/banner_img.png";
+import jack from "../../../public/assets/jack.png";
 import AlarmOnIcon from "@mui/icons-material/AlarmOn";
 import AvatarComp from "./AvatarComp";
 
 const Banner = () => {
   return (
-    <div className="flex justify-between items-center  py-32 relative">
+    <div className="container mx-auto flex justify-between items-center  py-32 relative">
       <div className="absolute gradient-bg h-full w-full z-0"></div>
-      <div className="w-1/2 ml-20 z-10">
+      <div className="w-1/2 z-10">
         <div className="bg-[#FDE4D0] py-2 px-4 rounded-3xl w-[170px]">
           <p className="text-base text-primary">#Special Food 🍇</p>
         </div>
         <div className="mt-10 z-10">
-          <h1 className="text-7xl font-bold leading-0">
-            We Offer <br /> <span className="word-with-image">Delicious</span>{" "}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl/normal font-bold leading-0">
+            We Offer <span className="word-with-image">Delicious</span> <br />
             <span className="text-primary">Food</span> And Quick Service
           </h1>
         </div>

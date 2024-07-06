@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React from "react";
-import aboutImg from "../../assets/about-img.png";
-import fastFood from "../../assets/fast-food.png";
-import healthyFoods from "../../assets/healthy-foods.png";
-import delivery from "../../assets/delivery.png";
-import ceo from "../../assets/ceo.png";
+import aboutImg from "../../../public/assets/about-img.png";
+import fastFood from "../../../public/assets/fast-food.png";
+import healthyFoods from "../../../public/assets/healthy-foods.png";
+import delivery from "../../../public/assets/delivery.png";
+import ceo from "../../../public/assets/ceo.png";
 
 const AboutComp = () => {
   return (
-    <div className="flex justify-between items-start gap-4 mx-16 my-10">
+    <div className="container mx-auto flex justify-between items-start gap-4 my-10">
       <div className="w-1/2 bg-[#F7F8F9] rounded-md ">
         <Image src={aboutImg} alt="about image"></Image>
       </div>
