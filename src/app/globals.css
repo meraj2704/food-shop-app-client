@@ -2,8 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: "Poppins", sans-serif;
+:root{
+  --bg-color:white;
+  --primary-color:#F58220;
+  --secondary-color:#FACC15;
+  --text-color:black;
+  --gradient-start:white;
+  --gradient-finish: #FEF2E8;
+  --gradient-color:#FCE3CE;
+  --img-bg:#F7F8F9;
+  --border-color:#E5E7EB;
+}
+
+.dark{
+  --bg-color:#020617;
+  --primary-color:#F58220;
+  --secondary-color:#FACC15;
+  --text-color:white;
+  --img-bg:#080f24;
+  --gradient-start:black;
+  --gradient-finish: #1B1218;
+  --gradient-color: #331F18;
+  --img-bg:#070C1D;
+  --border-color:#1F2937;
 }
 
 .word-with-image {
@@ -29,43 +50,42 @@ body {
   background: rgb(255, 255, 255);
   background: linear-gradient(
     103deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(250, 216, 187, 1) 100%
+    var(--gradient-start) 0%,
+    var(--gradient-color) 100%
   );
-  filter: blur(100px);
+  filter: blur(70px);
 }
 
 .footer-bg{
-  background-image: url('../../public/assets/footer.jpg');
+  background-image: url('/assets/kitchen/footer.png');
   background-size: cover;
   background-position: center;
 }
 /* $color-primary-white: rgb(240, 240, 240); */
 
-/* main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-  font-family: "Roboto", sans-serif;
-} */
-
-.card {
-  .card-name {
-  }
-  &:hover .card-name {
-    bottom: 40%; /* Move to the middle of the card */
-    transition: bottom 0.3s ease-out; /* Smooth transition for bottom property */
-  }
-  &:hover .bg-div{
-    opacity: 0.6  ;
-  }
-}
 
 
 .combo-offer-bg{
   background-image: url('../../public/assets/offer-bg.png');
   background-size: cover;
   background-position: center;
+}
+
+
+
+@keyframes growFromBottom {
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+.grow-from-bottom {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  animation: growFromBottom 0.5s ease-out forwards;
 }
