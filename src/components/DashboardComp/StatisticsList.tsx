@@ -13,7 +13,7 @@ const StatisticsList = () => {
               Good Morning Meraj!
             </h1>
             <p className="text-textColor opacity-75 font-light">
-              Here's what happening with your store today!
+              {"Here's"} what happening with your store today!
             </p>
             <div className="flex flex-col mt-10 gap-1">
               <h1 className="text-xl font-bold text-primary">437438</h1>
@@ -123,5 +123,3 @@ const StatisticsList = () => {
 
 export default StatisticsList;
 
-{
-}
