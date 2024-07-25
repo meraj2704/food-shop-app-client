@@ -1,5 +1,4 @@
 
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,7 +6,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
 
-    // Or if using `src` directory:
+   
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -26,6 +25,7 @@ module.exports = {
         bgGradientFinish:'var(--gradient-finish)',
         imgBg:'var(--img-bg)',
         borderColor: 'var(--border-color)',
+        cancelButton:'var(--cancel-button)'
       },
     },
   },

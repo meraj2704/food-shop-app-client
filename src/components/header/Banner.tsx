@@ -1,14 +1,15 @@
 import React from "react";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { Avatar, AvatarGroup } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+// import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+// import { Avatar, AvatarGroup } from "@mui/material";
+// import CiStar  from "@mui/icons-material/Star";
 import Image from "next/image";
 import bannerImage from "../../../public/assets/banner_img.png";
 import jack from "../../../public/assets/jack.png";
-import AlarmOnIcon from "@mui/icons-material/AlarmOn";
+// import AlarmOnIcon from "@mui/icons-material/AlarmOn";
 import AvatarComp from "./AvatarComp";
 import RegularButton from "../button/RegularButton";
 import HeaderTag from "../button/HeaderTag";
+import { CiStar } from "react-icons/ci";
 const Banner = () => {
   return (
     <div className="w-full relative">
@@ -34,21 +35,21 @@ const Banner = () => {
             <RegularButton btnTitle="Order Now" />
             <div className="flex gap-5 items-center">
               <div className="flex justify-center items-center p-4 border-[2px] border-primary rounded-full">
-                <PlayArrowIcon
+                {/* <PlayArrowIcon
                   style={{ color: "#F58220", fontSize: "2rem" }}
-                ></PlayArrowIcon>
+                ></PlayArrowIcon> */}
               </div>
               <p className="text-primary font-bold">How To Play</p>
             </div>
           </div>
           <div className="flex gap-5 mt-20">
-            <AvatarComp></AvatarComp>
+            {/* <AvatarComp></AvatarComp> */}
             <div className="flex flex-col ">
               <h1 className="text-base font-semibold text-textColor opacity-75">
                 Our happy customers
               </h1>
               <div className="flex items-center gp-2 ">
-                <StarIcon style={{ color: "#FACC15" }}></StarIcon>
+                {/* <StarIcon style={{ color: "#FACC15" }}></StarIcon> */}
                 <p className="text-textColor opacity-75 text-xs ">4.7</p>
                 <p className="text-textColor opacity-75 text-xs ">
                   (13.7k reviews)
@@ -65,7 +66,7 @@ const Banner = () => {
             <h1>🔥</h1>
           </div>
           <div className="absolute top-0 right-[10%] p-3 bg-primary rounded-md rotate-12">
-            <AlarmOnIcon style={{ color: "#fff" }} />
+            {/* <AlarmOnIcon style={{ color: "#fff" }} /> */}
           </div>
           <div className="absolute h-4 w-4 rounded-md bg-primary rotate-45 right-[5%]"></div>
           <div className="absolute h-4 w-4 rounded-full bg-primary rotate-45 right-[7%] bottom-[10%]"></div>
@@ -82,21 +83,21 @@ const Banner = () => {
             <div className="px-4">
               <h1 className="font-semibold text-textColor">MCD Veg Burger</h1>
               <div className="flex">
-                <StarIcon
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>
+                ></CiStar>
               </div>
               <p>
                 <span className="text-primary">$</span> 8.4
@@ -120,21 +121,21 @@ const Banner = () => {
                 Healthy and Delicious Food
               </p>
               <div className="flex">
-                <StarIcon
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>{" "}
-                <StarIcon
+                ></CiStar>{" "}
+                <CiStar 
                   style={{ color: "#FACC15", fontSize: "14px" }}
-                ></StarIcon>
+                ></CiStar>
               </div>
             </div>
           </div>

@@ -4,11 +4,11 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import logo from "../../../../public/assets/logo.png";
 import logoLight from "../../../../public/assets/logoLight.png";
-import SearchIcon from "@mui/icons-material/Search";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useTheme } from "next-themes";
+import { CiSearch, CiShoppingCart } from "react-icons/ci";
+import { MdFavorite } from "react-icons/md";
+import { IoPersonCircleOutline } from "react-icons/io5";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isScrolled, setScrolled] = useState(false);
@@ -50,19 +50,21 @@ const Navbar = () => {
           )}
         </div>
         <div className="flex items-center gap-5">
-          <p className="uppercase text-textColor hover:text-primary">Home</p>
-          {/* <HomeMenu /> */}
-          {/* <MergeMenu />
-          <Pages /> */}
-          <p className="uppercase text-textColor hover:text-primary cursor-pointer">
-            Admin
-          </p>
+          <Link href={"/"}>
+            <p className="uppercase text-textColor hover:text-primary">Home</p>
+          </Link>
+          <Link href={'/admin/dashboard'}>
+            {" "}
+            <p className="uppercase text-textColor hover:text-primary cursor-pointer">
+              Admin
+            </p>
+          </Link>
         </div>
         <div className="flex gap-4">
-          <SearchIcon className="text-textColor hover:text-primary" />
-          <ShoppingCartIcon className="text-textColor hover:text-primary" />
-          <FavoriteBorderIcon className="text-red-700" />
-          <PermIdentityIcon className="text-textColor hover:text-primary" />
+          <CiSearch className="text-textColor hover:text-primary" />
+          <CiShoppingCart className="text-textColor hover:text-primary" />
+          <MdFavorite className="text-red-700" />
+          <IoPersonCircleOutline className="text-textColor hover:text-primary" />
         </div>
       </nav>
     </div>

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import testimonials from "../../../public/assets/testimonials.png";
-import StarIcon from "@mui/icons-material/Star";
 import jack from "../../../public/assets/jack.png";
 import HeaderTag from "../button/HeaderTag";
+import { CiStar } from "react-icons/ci";
 
 const TestimonialsCom = () => {
   return (
@@ -33,21 +33,21 @@ const TestimonialsCom = () => {
               <div className="px-4">
                 <h1 className="font-semibold  ">Jakob Culhane</h1>
                 <div className="flex">
-                  <StarIcon
+                  <CiStar 
                     style={{ color: "#FACC15", fontSize: "14px" }}
-                  ></StarIcon>{" "}
-                  <StarIcon
+                  ></CiStar>{" "}
+                  <CiStar 
                     style={{ color: "#FACC15", fontSize: "14px" }}
-                  ></StarIcon>{" "}
-                  <StarIcon
+                  ></CiStar>{" "}
+                  <CiStar 
                     style={{ color: "#FACC15", fontSize: "14px" }}
-                  ></StarIcon>{" "}
-                  <StarIcon
+                  ></CiStar>{" "}
+                  <CiStar 
                     style={{ color: "#FACC15", fontSize: "14px" }}
-                  ></StarIcon>{" "}
-                  <StarIcon
+                  ></CiStar>{" "}
+                  <CiStar 
                     style={{ color: "#FACC15", fontSize: "14px" }}
-                  ></StarIcon>
+                  ></CiStar>
                 </div>
               </div>
             </div>

@@ -7,7 +7,7 @@ import { IoIosNotifications } from "react-icons/io";
 const AdminHeader = () => {
     const {theme} = useTheme();
   return (
-    <div className={`h-full border-b-[1px]  ${theme === 'dark' ? 'border-b-gray-800': 'border-b-gray-200'} flex justify-between items-center px-10`}>
+    <div className={`h-full border-b-[1px] bg-bgColor  ${theme === 'dark' ? 'border-b-gray-800': 'border-b-gray-200'} flex justify-between items-center px-10`}>
       <div className="relative">
         <input
           type="text"
@@ -20,8 +20,8 @@ const AdminHeader = () => {
       </div>
       <div className="flex gap-4">
         <div className="flex justify-center items-center">
-          <div className="p-2 bg-gray-300 rounded-full ">
-            <IoIosNotifications className="text-textColor text-xl" />
+          <div className="p-2 bg-bgGradient rounded-full ">
+            <IoIosNotifications className="text-primary text-xl" />
           </div>
         </div>
         <div className="flex gap-3">
@@ -29,8 +29,8 @@ const AdminHeader = () => {
             <p>Img</p>
           </div>
           <div>
-            <p>Name</p>
-            <p>Roll</p>
+            <p className="text-base text-primary">Meraj</p>
+            <p className="text-xs font-light">Admin</p>
           </div>
         </div>
       </div>

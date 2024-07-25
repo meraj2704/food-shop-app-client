@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const page = () => {
-    return (
-        <div>
-            <h2>Categories</h2>
-        </div>
-    );
+  return (
+    <div className="max-w-full">
+      <div className="w-full flex justify-end items-center">
+        <button></button>
+      </div>
+    </div>
+  );
 };
 
 export default page;

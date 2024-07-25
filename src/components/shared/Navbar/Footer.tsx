@@ -121,3 +121,14 @@ const Footer = () => {
 export default Footer;
 
 // focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition duration-300
+
+
+
+
+
+
+
+
+
+
+
