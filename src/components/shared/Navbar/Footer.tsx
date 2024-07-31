@@ -94,8 +94,7 @@ const Footer = () => {
             <button className="py-1 bg-primary px-3 rounded-r-lg">
               <FaArrowRightLong className="text-lg text-textColor" />
             </button>
-          </div>
-          <p className="text-xs leading-5 text-textColor font-medium opacity-75 mt-4">
+          </div> <p className="text-xs leading-5 text-textColor font-medium opacity-75 mt-4">
             Subscribe to email notifications to get notified for all money
             saving and tummy filling offers. Enter your email address to get
             started
