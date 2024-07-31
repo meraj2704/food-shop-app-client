@@ -75,18 +75,24 @@ const AddFoodForm = () => {
               <>
                 <div className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg"></div>
                 <div className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg">
-                <img src={images[0]} className="w-full h-full"/></div>
+                  {typeof images[0] === "string" && (
+                    <img src={images[0]} className="w-full h-full" />
+                  )}
+                </div>
               </>
             )}
             {images.length > 1 && (
               <>
-              {
-                images.map((image, index) => (
-                  <div key={index} className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg">
-                    <img src={image} className="w-full h-full"/>
+                {images.map((image, index) => (
+                  <div
+                    key={index}
+                    className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg"
+                  >
+                    {typeof image === "string" && (
+                    <img src={image} className="w-full h-full" />
+                  )}
                   </div>
                 ))}
-              
               </>
             )}
           </div>

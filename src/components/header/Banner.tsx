@@ -6,7 +6,6 @@ import Image from "next/image";
 import bannerImage from "../../../public/assets/banner_img.png";
 import jack from "../../../public/assets/jack.png";
 // import AlarmOnIcon from "@mui/icons-material/AlarmOn";
-import AvatarComp from "./AvatarComp";
 import RegularButton from "../button/RegularButton";
 import HeaderTag from "../button/HeaderTag";
 import { CiStar } from "react-icons/ci";
