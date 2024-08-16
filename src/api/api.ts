@@ -1,21 +1,22 @@
-import { CreateCategoryInt } from "@/types/interfaces";
+const baseUrl = 'http://localhost:4040';
+const getOption = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
 
-export const createCategory = async (newCategory: CreateCategoryInt) => {
-  const formDate = new FormData();
-  formDate.append("name", newCategory.name);
-  formDate.append("shortNote", newCategory.shortNote);
+export const getCategories = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/api/category`, getOption);
 
-  const res = await fetch(`/category`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    body: formDate,
-  });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-  if(!res.ok){
-    throw new Error(`Failed to create category: ${res.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    throw error; // Re-throw the error to let React Query handle it
   }
-
-  return res.json();
 };

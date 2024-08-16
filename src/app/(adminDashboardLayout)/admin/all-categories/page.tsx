@@ -1,11 +1,11 @@
-import React from 'react';
-
+import AllCategory from "@/components/all-category/AllCategory";
+import React from "react";
 const page = () => {
-    return (
-        <div>
-            all categories
-        </div>
-    );
+  return (
+    <div>
+      <AllCategory />
+    </div>
+  );
 };
 
 export default page;
