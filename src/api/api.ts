@@ -6,6 +6,10 @@ const getOption = {
   },
 };
 
+// -----------------------------------
+// ------------ categories -----------
+// -----------------------------------
+
 export const getCategories = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/category`, getOption);
