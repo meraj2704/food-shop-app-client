@@ -4,17 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
 const AllCategory = () => {
-  const { data:categories, isLoading, isError } = useQuery({
-    queryKey: ["categories"],
+  const { data:allCategories, isLoading, isError } = useQuery({
+    queryKey: ["allCategories"],
     queryFn: getCategories,
   });
+  console.log("allCategories", allCategories)
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading categories.</p>;
   return (
     <div>
-      {categories.length > 0 ? (
+      {allCategories.length > 0 ? (
         <>
-          {categories.map((category:any) => (
+          {allCategories.map((category:any) => (
             <div key={category.id}>
               <h2>{category.name}</h2>
             </div>

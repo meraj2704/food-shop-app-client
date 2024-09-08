@@ -30,10 +30,10 @@ const LatestNewsTable = () => {
 	const {
 		isLoading,
 		isError,
-		data: posts,
+		data: allCategories,
 		refetch,
 	} = useQuery({
-		queryKey: ["adminNews"],
+		queryKey: ["allCategories"],
 		queryFn: () => getCategories(),
 	});
 
@@ -109,7 +109,7 @@ const LatestNewsTable = () => {
 
 	// ================= MEMOIZATION ================
 	const columns = useMemo(() => COLUMNS, []);
-	const data = useMemo(() => posts, [posts]);
+	const data = useMemo(() => allCategories, [allCategories]);
 
 	// ================ TABLE FUNCITONALITY ===============
 	const [sorting, setSorting] = useState<SortingState>([]);
