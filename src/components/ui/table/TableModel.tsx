@@ -29,7 +29,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
 	};
 
 	return (
-		<div className="rounded-md bg-white p-2">
+		<div className="rounded-md bg-bgColor p-2">
 			<div className="max-w-full overflow-x-auto">
 				{/* {table?.getRowModel().rows.length === 0 ? (
 					<div className="text-center font-semibold text-lg p-4">
@@ -37,7 +37,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
 					</div>
 				) : ( */}
 				<table className="data-table w-full">
-					<thead className="bg-stone-100">
+					<thead className="bg-bgGradient">
 						{table
 							.getHeaderGroups()
 							.map((headerGroup: { id: string; headers: any[] }) => (
@@ -91,7 +91,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
 												<div>
 													<input
 														type="text"
-														className="my-1 px-4 py-1 w-full column-filter bg-white border border-gray-200 outline-none rounded-md font-medium"
+														className="my-1 px-4 py-1 w-full column-filter bg-white border border-borderColor outline-none rounded-md font-medium"
 														onChange={(e) =>
 															header.column.setFilterValue(e.target.value)
 														}
@@ -110,12 +110,12 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
 							.rows.map((row: { id: string; getVisibleCells: () => any[] }) => (
 								<tr
 									key={row.id}
-									className={`border ${
-										selectedRows.includes(row.id)
-											? "bg-slate-300"
-											: "even:bg-[#F6F6F6]"
-									}`}
-									onClick={() => handleRowClick(row.id)}
+									// className={`border ${
+									// 	selectedRows.includes(row.id)
+									// 		? "bg-slate-300"
+									// 		: "even:bg-[#F6F6F6]"
+									// }`}
+									// onClick={() => handleRowClick(row.id)}
 								>
 									{row.getVisibleCells().map((cell) => (
 										<td key={cell.id} className="px-4 py-2">
