@@ -11,7 +11,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import React, { useEffect, useMemo, useState } from "react";
-import { MdOutlineEdit } from "react-icons/md";
+import { MdOutlineEdit, MdOutlineViewAgenda } from "react-icons/md";
 
 import { Divide } from "lucide-react";
 import { useDispatch } from "react-redux";
@@ -33,7 +33,7 @@ const LatestNewsTable = () => {
     queryKey: ["allCategories"],
     queryFn: () => getCategories(),
   });
-  console.log("allCategories", allCategories);
+
 
   const [editData, setEditData] = useState<any | null>(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -75,36 +75,48 @@ const LatestNewsTable = () => {
       enableColumnFilter: false,
       enableSorting: false,
     },
+    // {
+    //   header: "Active Status",
+    //   accessorKey: "active_status",
+    //   enableColumnFilter: false,
+    //   enableSorting: false,
+    //   cell: (row: any) => (
+    //     <>
+    //       {row.row.original.active_status ? (
+    //         <div className="text-base font-bold text-[#49A700] text-center">
+    //           Active
+    //         </div>
+    //       ) : (
+    //         <div className="text-base font-bold text-[#F55050] text-center">
+    //           Inactive
+    //         </div>
+    //       )}
+    //     </>
+    //   ),
+    // },
     {
-      header: "Active Status",
-      accessorKey: "active_status",
-      enableColumnFilter: false,
-      enableSorting: false,
-      cell: (row: any) => (
-        <>
-          {row.row.original.active_status ? (
-            <div className="text-base font-bold text-[#49A700] text-center">
-              Active
-            </div>
-          ) : (
-            <div className="text-base font-bold text-[#F55050] text-center">
-              Inactive
-            </div>
-          )}
-        </>
-      ),
-    },
-    {
-      header: "Edit",
+      header: "Action",
       accessor: "edit",
       enableSorting: false,
       cell: (row: any) => (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center gap-5">
           <button
             // onClick={() => handleEdit(row.row.original)}
-            className="bg-[#F17B25] text-[#FEFCFF] font-medium text-sm p-2 rounded"
+            className="bg-primary text-textColor text-sm p-2 rounded"
           >
-            <MdOutlineEdit className="w-4 h-4 text-[#FEFCFF]" />
+            <MdOutlineViewAgenda className="w-4 h-4 text-textColor" />
+          </button>
+          <button
+            // onClick={() => handleEdit(row.row.original)}
+            className="bg-primary text-textColor text-sm p-2 rounded"
+          >
+            <MdOutlineEdit className="w-4 h-4 text-textColor" />
+          </button>
+          <button
+            // onClick={() => handleEdit(row.row.original)}
+            className="bg-primary text-textColor text-sm p-2 rounded"
+          >
+            <MdOutlineEdit className="w-4 h-4 text-textColor" />
           </button>
         </div>
       ),
@@ -160,7 +172,7 @@ const LatestNewsTable = () => {
             setFiltering={setFiltering}
             data={data}
             table={table}
-            title={"Add Latest News"}
+            title={"Add New Category"}
             open={addModalOpen}
             onOpenChange={setAddModalOpen}
           >

@@ -81,7 +81,7 @@ const FilterDiv: React.FC<FilterDivProps> = ({
 			</div>
 
 			{/* ======================================= EXPORT OPTION ================================== */}
-			<div>
+			{/* <div>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant="outline">Export</Button>
@@ -104,7 +104,7 @@ const FilterDiv: React.FC<FilterDivProps> = ({
 						</DropdownMenuCheckboxItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
-			</div>
+			</div> */}
 
 			{/* <div className="flex justify-center items-center max-lg:w-full gap-2"> */}
 			{/* =================================================== COLUMN DESCRIPTION DIV =============================== */}
