@@ -4,7 +4,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 interface ProviderProps {
     children: ReactNode; 
 }
-const Provider = ({children}:ProviderProps) => {
+const LayoutProvider = ({children}:ProviderProps) => {
     const [mounted,setMounted] = useState(false)
     useEffect(()=> {
         setMounted(true)
@@ -17,4 +17,4 @@ const Provider = ({children}:ProviderProps) => {
     );
 };
 
-export default Provider;
+export default LayoutProvider;

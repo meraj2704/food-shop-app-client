@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Roboto, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import Provider from "./Provider";
 import ThemeSwitcher from "@/components/darkmode/ThemeSwitcher";
 import ReactQueryProvider from "./ReactQueryProvider";
+import LayoutProvider from "./LayoutProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const playfairDisplay = Playfair_Display({subsets: ["latin"] });
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.className} bg-bgColor`}>
         <ReactQueryProvider>
-          <Provider>{children}</Provider>
+          <LayoutProvider>{children}</LayoutProvider>
         </ReactQueryProvider>
       </body>
     </html>

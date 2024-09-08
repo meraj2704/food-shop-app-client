@@ -36,6 +36,7 @@ const LatestNewsTable = () => {
 		queryKey: ["allCategories"],
 		queryFn: () => getCategories(),
 	});
+	console.log("allCategories", allCategories)
 
 	const [editData, setEditData] = useState<any | null>(null);
 	const [editModalOpen, setEditModalOpen] = useState(false);
