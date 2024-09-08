@@ -1,4 +1,3 @@
-import { handleAddModalOpen } from "@/redux/Reducer/MainSlice";
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -8,6 +7,7 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../dialog";
+import { handleAddModalOpen } from "@/redux/Reducer/MainSlice";
 
 interface TableHeadingProps {
   headName: string;
