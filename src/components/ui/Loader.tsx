@@ -1,18 +1,21 @@
 // Loading.js
-import Player from 'lottie-react';
+'use client'
+import Lottie from 'lottie-react'; // Correct default import
 
-const Loading = () => {
-  const loadingAnimation = "/loader.json";
+// import loadingAnimation from '/spoon.json'
+const loadingAnimation = '/spoon.json'
+
+const Loader = () => {
+  
   return (
     <div className="flex items-center justify-center h-screen">
-      <Player
-        autoplay
+      <Lottie
         loop
-        src={loadingAnimation}
+        animationData={loadingAnimation}
         style={{ height: "300px", width: "300px" }} // Adjust size as needed
       />
     </div>
   );
 };
 
-export default Loading;
+export default Loader;

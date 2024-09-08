@@ -21,6 +21,7 @@ import PaginationDiv from "../ui/table/PaginationDiv";
 import TableModel from "../ui/table/TableModel";
 import FilterDiv from "../ui/table/FilterDiv";
 import { getCategories } from "@/api/api";
+import Loader from "../ui/Loader";
 
 const LatestNewsTable = () => {
   // ============ DATA FETCHING ============
@@ -150,11 +151,20 @@ const LatestNewsTable = () => {
     onColumnVisibilityChange: setColumnVisibility,
   });
 
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    // Simulate loading data
+    const timer = setTimeout(() => setLoading(false), 5000); // Simulate a 3-second loading time
+
+    return () => clearTimeout(timer); // Clean up timer
+  }, []);
+
   // console.log(table.getHeaderGroups());
-  if (isLoading)
+  if (loading)
     return (
-      <div className="w-screen h-screen flex justify-center items-center">
-        {/* <ScaleLoader color="#421957" height={70} radius={8} width={10} /> */}
+      <div className="w-full flex justify-center items-center">
+        <Loader/>
       </div>
     );
 
