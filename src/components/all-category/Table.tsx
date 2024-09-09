@@ -23,7 +23,7 @@ import FilterDiv from "../ui/table/FilterDiv";
 import { getCategories } from "@/api/api";
 import Loader from "../ui/Loader";
 
-const LatestNewsTable = () => {
+const Table = () => {
   // ============ DATA FETCHING ============
   const {
     isLoading,
@@ -213,4 +213,4 @@ const LatestNewsTable = () => {
   );
 };
 
-export default LatestNewsTable;
+export default Table;
