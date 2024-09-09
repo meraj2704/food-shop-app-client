@@ -39,7 +39,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
         <table className="data-table w-full">
           <thead className="bg-bgGradient border border-borderColor">
             {table
-              .getHeaderGroups()
+              ?.getHeaderGroups()
               .map((headerGroup: { id: string; headers: any[] }) => (
                 <tr key={headerGroup.id} className="rounded-md">
                   {headerGroup.headers.map((header) => (
@@ -106,7 +106,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
 
           <tbody>
             {table
-              .getRowModel()
+              ?.getRowModel()
               .rows.map((row: { id: string; getVisibleCells: () => any[] }) => (
                 <tr
                   key={row.id}

@@ -72,7 +72,7 @@ console.log("categories", allCategories)
     },
     {
       header: "Short Name",
-      accessorKey: "shortName",
+      accessorKey: "shortNote",
       enableColumnFilter: false,
       enableSorting: false,
     },
@@ -155,13 +155,7 @@ console.log("categories", allCategories)
 
 
   // console.log(table.getHeaderGroups());
-  if (isLoading)
-    return (
-      <div className="w-full flex justify-center items-center">
-        <Loader/>
-      </div>
-    );
-
+  
   return (
     <>
       <section className="">

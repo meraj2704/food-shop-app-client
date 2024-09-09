@@ -24,12 +24,10 @@ const AddCategoriesForm: React.FC = () => {
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('shortNote', data.shortNote);
-    // Append the image file if it exists
+
     if (imageFile) {
       formData.append('file', imageFile);
     }
-    console.log("data",data)
-    // Send formData to backend
     fetch(`${baseUrl}/category`, {
       method: 'POST',
       // headers: {
@@ -39,6 +37,9 @@ const AddCategoriesForm: React.FC = () => {
     })
       .then((response) => response.json())
       .then((result) => {
+        // if(result.success) {
+        //   alert('Category added successfully');
+        // }
         console.log('Form submitted:', result);
       })
       .catch((error) => {
