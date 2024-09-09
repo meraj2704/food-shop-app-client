@@ -7,11 +7,10 @@ import { CiEraser } from 'react-icons/ci';
 import { FiSave } from 'react-icons/fi';
 import { categorySchema } from './categorySchema';
 import TextInput from '../ui/TextInput';
-import { json } from 'stream/consumers';
+import { baseUrl } from '@/api/api';
 
 const AddCategoriesForm: React.FC = () => {
-  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
-
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const {
     control,
     handleSubmit,
@@ -19,26 +18,37 @@ const AddCategoriesForm: React.FC = () => {
   } = useForm({
     resolver: yupResolver(categorySchema),
   });
-
   const onSubmit = (data: any) => {
-    console.log('Form Data:', data);
-    const allData = {
-      ...data,
-      image
+    console.log("onsubmit")
+    alert(JSON.stringify(data));
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('shortNote', data.shortNote);
+    // Append the image file if it exists
+    if (imageFile) {
+      formData.append('file', imageFile);
     }
-    alert(JSON.stringify(allData));
+    console.log("data",data)
+    // Send formData to backend
+    fetch(`${baseUrl}/category`, {
+      method: 'POST',
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log('Form submitted:', result);
+      })
+      .catch((error) => {
+        console.error('Error submitting form:', error);
+      });
   };
 
   const onDrop = (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImage(reader.result);
-    };
-    
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+    setImageFile(file);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -46,8 +56,7 @@ const AddCategoriesForm: React.FC = () => {
       'image/*': [],
     },
     onDrop,
-    maxFiles: 3,
-    multiple: false,
+    maxFiles: 1, // Only allow one image
   });
 
   return (
@@ -55,7 +64,7 @@ const AddCategoriesForm: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full flex justify-between gap-5">
           <TextInput
-            name="categoryName"
+            name="name"
             label="Category Name"
             control={control}
             errors={errors}
@@ -77,13 +86,13 @@ const AddCategoriesForm: React.FC = () => {
           <div
             id="drop-area"
             className={`w-56 h-56 ${
-              image ? 'border' : 'border-2 border-dashed'
+              imageFile ? 'border' : 'border-2 border-dashed'
             } border-primary rounded-lg bg-bgGradientFinish flex flex-col justify-center items-center`}
           >
-            {image ? (
+            {imageFile ? (
               <img
                 className="w-full h-full rounded-lg object-cover"
-                src={image as string}
+                src={URL.createObjectURL(imageFile)}
                 alt="Image uploaded"
               />
             ) : (
@@ -92,10 +101,10 @@ const AddCategoriesForm: React.FC = () => {
           </div>
         </div>
         <div className="flex justify-end items-center gap-5 mt-5">
-          <button type="button" className="flex items-center gap-3 px-4 py-2 rounded-lg bg-cancelButton text-red-700">
+          <button type="button" className="flex items-center gap-3 px-4 py-2 rounded-lg bg-cancelButton text-red-700 hover:text-red-800">
             <CiEraser /> <p>Cancel</p>
           </button>
-          <button type="submit" className="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary text-white">
+          <button type="submit" className="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary hover:bg-bgGradient text-white">
             <FiSave /> <p>Save</p>
           </button>
         </div>

@@ -34,7 +34,7 @@ const Table = () => {
     queryKey: ["allCategories"],
     queryFn: () => getCategories(),
   });
-
+console.log("categories", allCategories)
 
   const [editData, setEditData] = useState<any | null>(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -151,17 +151,11 @@ const Table = () => {
     onColumnVisibilityChange: setColumnVisibility,
   });
 
-  const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    // Simulate loading data
-    const timer = setTimeout(() => setLoading(false), 5000); // Simulate a 3-second loading time
 
-    return () => clearTimeout(timer); // Clean up timer
-  }, []);
 
   // console.log(table.getHeaderGroups());
-  if (loading)
+  if (isLoading)
     return (
       <div className="w-full flex justify-center items-center">
         <Loader/>
@@ -191,7 +185,7 @@ const Table = () => {
 
           {isLoading ? (
             // <ScaleLoader color="#421957" height={70} radius={8} width={10} />
-            <p>Loadin=g .......</p>
+           <Loader/>
           ) : (
             // <p>ok</p>
             <TableModel table={table} />

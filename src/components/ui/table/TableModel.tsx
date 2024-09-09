@@ -45,7 +45,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
                   {headerGroup.headers.map((header) => (
                     <th key={header.id} className=" p-2 py-5">
                       <div onClick={header.column.getToggleSortingHandler()}>
-                        <div className="flex items-center gap-2 justify-start cursor-pointer select-none last:mx-auto">
+                        <div className="flex items-center gap-2 justify-center cursor-pointer select-none">
                           <div>
                             {flexRender(
                               header.column.columnDef.header,
@@ -114,7 +114,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
                   onClick={() => handleRowClick(row.id)}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-4 py-2 text-base">
+                    <td key={cell.id} className="px-4 py-2 text-base text-center">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

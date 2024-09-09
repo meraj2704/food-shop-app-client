@@ -1,4 +1,5 @@
-const baseUrl = 'https://food-shop-bakcend.vercel.app';
+// export const baseUrl = 'https://food-shop-bakcend.vercel.app';
+export const baseUrl = 'http://localhost:4040/api';
 const getOption = {
   method: 'GET',
   headers: {
@@ -12,7 +13,7 @@ const getOption = {
 
 export const getCategories = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/category`, getOption);
+    const response = await fetch(`${baseUrl}/category`, getOption);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
