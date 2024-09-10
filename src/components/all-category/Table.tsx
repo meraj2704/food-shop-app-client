@@ -191,7 +191,7 @@ console.log("categories", allCategories)
             <DialogContent className="bg-white w-[80vw]">
               {/* <EditLatesNewsForm
 								setEditModalOpen={setEditModalOpen}
-								refetch={refetch}
+								refetch={refetch}o
 							/> */}
             </DialogContent>
           </Dialog>

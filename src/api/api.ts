@@ -1,4 +1,4 @@
-export const baseUrl = 'https://food-shop-bakcend.vercel.app';
+export const baseUrl = 'https://food-shop-bakcend.vercel.app/api';
 // export const baseUrl = 'http://localhost:4040/api';
 const getOption = {
   method: 'GET',

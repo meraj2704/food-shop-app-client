@@ -106,7 +106,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
 
           <tbody>
             {table
-              ?.getRowModel()
+              .getRowModel()
               .rows.map((row: { id: string; getVisibleCells: () => any[] }) => (
                 <tr
                   key={row.id}
