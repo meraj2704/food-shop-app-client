@@ -1,5 +1,6 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
 import { PostMethodPropsI } from './../interface/interface';
+import axios from 'axios';
 
 
 export const baseUrl = 'https://food-shop-bakcend.vercel.app/api';
@@ -32,6 +33,11 @@ export const useAddMethod = ({ endpoint, key }: PostMethodPropsI) => {
   });
 
   return mutation;
+};
+
+export const deleteResource = async (endpoint: string, id: string) => {
+  const response = await axios.delete(`${baseUrl}/${endpoint}/${id}`);
+  return response.data;
 };
 
 

@@ -9,6 +9,7 @@ import { categorySchema } from "./categorySchema";
 import TextInput from "../ui/TextInput";
 import { baseUrl, useAddMethod } from "@/api/api";
 import Loader from "../ui/Loader";
+import Image from "next/image";
 
 const AddCategoriesForm: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -16,6 +17,7 @@ const AddCategoriesForm: React.FC = () => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(categorySchema),
@@ -26,12 +28,12 @@ const AddCategoriesForm: React.FC = () => {
     key: "addCategory",
   });
   const onSubmit = (data: any) => {
-    console.log("onsubmit");
-    alert(JSON.stringify(data));
+    // console.log("onsubmit");
+    // alert(JSON.stringify(data));
     setIsLoading(true);
     const formData = new FormData();
     formData.append("name", data.name);
-    formData.append("shortNote", data.shortNote);
+    formData.append("description", data.description);
 
     if (imageFile) {
       formData.append("file", imageFile);
@@ -40,29 +42,14 @@ const AddCategoriesForm: React.FC = () => {
       onSuccess: () => {
         setIsLoading(false);
         alert("Category added successfully");
+        reset();
+        setImageFile(null); // Reset the image file state
       },
       onError: (error) => {
         setIsLoading(false);
         alert("Error adding category:");
       },
     });
-    // fetch(`${baseUrl}/category`, {
-    //   method: 'POST',
-    //   // headers: {
-    //   //   'Content-Type': 'application/json',
-    //   // },
-    //   body: formData,
-    // })
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     // if(result.success) {
-    //     //   alert('Category added successfully');
-    //     // }
-    //     console.log('Form submitted:', result);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error submitting form:', error);
-    //   });
   };
 
   const onDrop = (acceptedFiles: File[]) => {
@@ -92,11 +79,11 @@ const AddCategoriesForm: React.FC = () => {
             placeholder="Category name"
           />
           <TextInput
-            name="shortNote"
-            label="Short Note"
+            name="description"
+            label="Description"
             control={control}
             errors={errors}
-            placeholder="Short note"
+            placeholder="Enter short description"
           />
         </div>
         <div
@@ -111,10 +98,12 @@ const AddCategoriesForm: React.FC = () => {
             } border-primary rounded-lg bg-bgGradientFinish flex flex-col justify-center items-center`}
           >
             {imageFile ? (
-              <img
+              <Image
                 className="w-full h-full rounded-lg object-cover"
                 src={URL.createObjectURL(imageFile)}
                 alt="Image uploaded"
+                width={200}
+                height={200}
               />
             ) : (
               <h1 className="text-textColor">Upload Image</h1>

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   getCoreRowModel,
   getFilteredRowModel,
@@ -11,7 +11,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import React, { useEffect, useMemo, useState } from "react";
-import { MdOutlineEdit, MdOutlineViewAgenda } from "react-icons/md";
+import { MdDelete, MdOutlineEdit, MdOutlineViewAgenda } from "react-icons/md";
+import { GrFormView } from "react-icons/gr";
+
 
 import { Divide } from "lucide-react";
 import { useDispatch } from "react-redux";
@@ -20,8 +22,9 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import PaginationDiv from "../ui/table/PaginationDiv";
 import TableModel from "../ui/table/TableModel";
 import FilterDiv from "../ui/table/FilterDiv";
-import { getCategories } from "@/api/api";
+import { deleteResource, getCategories } from "@/api/api";
 import Loader from "../ui/Loader";
+import Image from "next/image";
 
 const Table = () => {
   // ============ DATA FETCHING ============
@@ -50,6 +53,22 @@ console.log("categories", allCategories)
   // 	setEditData(rowData); // Set the data to edit
   // 	setEditModalOpen(true); // Open the Edit Dialog
   // };
+const queryClient = useQueryClient();
+  const { mutate: deleteCategory } = useMutation({
+    mutationFn: (id: string) => deleteResource('category', id),
+    onSuccess: () => {
+      // Refetch the data after successful deletion
+      queryClient.invalidateQueries('allCategories' as any);
+    },
+    onError: (error) => {
+      console.error("Error deleting the resource:", error);
+    },
+  });
+  const handleDelete = (rowData: any) => {
+  	console.log("rowData", rowData);
+    deleteCategory(rowData._id)
+
+  };
 
   // Close the Add modal
   const handleCloseAdd = () => {
@@ -58,12 +77,7 @@ console.log("categories", allCategories)
 
   // ================ DEFINING COLUMN ===============
   const COLUMNS = [
-    {
-      header: "ID",
-      accessorKey: "id",
-      enableColumnFilter: false,
-      enableSorting: false,
-    },
+    
     {
       header: "Name",
       accessorKey: "name",
@@ -71,10 +85,27 @@ console.log("categories", allCategories)
       enableSorting: false,
     },
     {
-      header: "Short Name",
-      accessorKey: "shortNote",
+      header: "Image",
+      accessorKey: "image_url", // Assuming the image URL is in the `imageUrl` field
       enableColumnFilter: false,
       enableSorting: false,
+      cell: (row: any) => (
+        <div className="w-full flex justify-center items-center">
+          <div className="w-16 h-16 flex items-center justify-center">
+          {row.getValue() ? (
+            <Image
+              src={row.getValue()}
+              alt="Category"
+              width={80}
+              height={80}
+              className="w-full h-full object-cover rounded"
+            />
+          ) : (
+            <span>No Image</span>
+          )}
+        </div>
+        </div>
+      ),
     },
     // {
     //   header: "Active Status",
@@ -103,21 +134,22 @@ console.log("categories", allCategories)
         <div className="flex justify-center items-center gap-5">
           <button
             // onClick={() => handleEdit(row.row.original)}
-            className="bg-primary text-textColor text-sm p-2 rounded"
+            className="bg-primary hover:scale-105 text-textColor text-sm p-2 rounded"
           >
-            <MdOutlineViewAgenda className="w-4 h-4 text-textColor" />
+            <GrFormView
+            className="w-4 h-4 text-textColor" />
           </button>
           <button
             // onClick={() => handleEdit(row.row.original)}
-            className="bg-primary text-textColor text-sm p-2 rounded"
+            className="bg-primary hover:scale-105 text-textColor text-sm p-2 rounded"
           >
             <MdOutlineEdit className="w-4 h-4 text-textColor" />
           </button>
           <button
-            // onClick={() => handleEdit(row.row.original)}
-            className="bg-primary text-textColor text-sm p-2 rounded"
+            onClick={() => handleDelete(row.row.original)}
+            className="bg-red-700 hover:scale-105 text-textColor text-sm p-2 rounded"
           >
-            <MdOutlineEdit className="w-4 h-4 text-textColor" />
+            <MdDelete className="w-4 h-4 text-textColor" />
           </button>
         </div>
       ),
