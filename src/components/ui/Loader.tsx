@@ -7,7 +7,7 @@ import loadingAnimation from "../../../public/animations/spoon.json";
 
 const Loader = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-start justify-center h-screen">
       <Lottie
         animationData={loadingAnimation}
         style={{ height: "300px", width: "300px" }} // Adjust size as needed

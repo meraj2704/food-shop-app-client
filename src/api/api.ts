@@ -1,4 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
+import { PostMethodPropsI } from './../interface/interface';
+
 
 export const baseUrl = 'https://food-shop-bakcend.vercel.app/api';
 // export const baseUrl = 'http://localhost:4040/api';
@@ -9,29 +11,30 @@ const getOption = {
   },
 };
 
+export const useAddMethod = ({ endpoint, key }: PostMethodPropsI) => {
+  const queryClient = useQueryClient();
 
-// export const useAddCategory = ({endpoint,}) => {
-//   const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async (formData: FormData) => {
+      const response = await fetch(`${baseUrl}/${endpoint}`, {
+        method: 'POST',
+        body: formData, // Accept formData here, not data
+      });
+      if (!response.ok) {
+        throw new Error('Error submitting form');
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      // Refetch the query with the provided key
+      queryClient.invalidateQueries(key as any);
+    },
+  });
 
-//   const mutation = useMutation({
-//     mutationFn: async (formData: FormData) => {
-//       const response = await fetch(`${baseUrl}/category`, {
-//         method: 'POST',
-//         body: formData,
-//       });
-//       if (!response.ok) {
-//         throw new Error('Error submitting form');
-//       }
-//       return response.json();
-//     },
-//     onSuccess: () => {
-//       // Refetch categories after adding a new category
-//       queryClient.invalidateQueries('allCategories');
-//     },
-//   });
+  return mutation;
+};
 
-//   return mutation;
-// };
+
 
 // -----------------------------------
 // ------------ categories -----------

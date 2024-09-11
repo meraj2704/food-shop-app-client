@@ -1,16 +1,18 @@
-'use client'
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useDropzone } from 'react-dropzone';
-import { CiEraser } from 'react-icons/ci';
-import { FiSave } from 'react-icons/fi';
-import { categorySchema } from './categorySchema';
-import TextInput from '../ui/TextInput';
-import { baseUrl } from '@/api/api';
+"use client";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useDropzone } from "react-dropzone";
+import { CiEraser } from "react-icons/ci";
+import { FiSave } from "react-icons/fi";
+import { categorySchema } from "./categorySchema";
+import TextInput from "../ui/TextInput";
+import { baseUrl, useAddMethod } from "@/api/api";
+import Loader from "../ui/Loader";
 
 const AddCategoriesForm: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     control,
     handleSubmit,
@@ -18,33 +20,49 @@ const AddCategoriesForm: React.FC = () => {
   } = useForm({
     resolver: yupResolver(categorySchema),
   });
-  const onSubmit = (data: any) => {
-    console.log("onsubmit")
-    alert(JSON.stringify(data));
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('shortNote', data.shortNote);
 
-    // if (imageFile) {
-    //   formData.append('file', imageFile);
-    // }
-    fetch(`${baseUrl}/category`, {
-      method: 'POST',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        // if(result.success) {
-        //   alert('Category added successfully');
-        // }
-        console.log('Form submitted:', result);
-      })
-      .catch((error) => {
-        console.error('Error submitting form:', error);
-      });
+  const { mutate } = useAddMethod({
+    endpoint: "category",
+    key: "addCategory",
+  });
+  const onSubmit = (data: any) => {
+    console.log("onsubmit");
+    alert(JSON.stringify(data));
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("shortNote", data.shortNote);
+
+    if (imageFile) {
+      formData.append("file", imageFile);
+    }
+    mutate(formData, {
+      onSuccess: () => {
+        setIsLoading(false);
+        alert("Category added successfully");
+      },
+      onError: (error) => {
+        setIsLoading(false);
+        alert("Error adding category:");
+      },
+    });
+    // fetch(`${baseUrl}/category`, {
+    //   method: 'POST',
+    //   // headers: {
+    //   //   'Content-Type': 'application/json',
+    //   // },
+    //   body: formData,
+    // })
+    //   .then((response) => response.json())
+    //   .then((result) => {
+    //     // if(result.success) {
+    //     //   alert('Category added successfully');
+    //     // }
+    //     console.log('Form submitted:', result);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error submitting form:', error);
+    //   });
   };
 
   const onDrop = (acceptedFiles: File[]) => {
@@ -54,11 +72,13 @@ const AddCategoriesForm: React.FC = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      'image/*': [],
+      "image/*": [],
     },
     onDrop,
     maxFiles: 1, // Only allow one image
   });
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="w-full mt-5 border-[1px] border-borderColor p-10 rounded-lg">
@@ -87,7 +107,7 @@ const AddCategoriesForm: React.FC = () => {
           <div
             id="drop-area"
             className={`w-56 h-56 ${
-              imageFile ? 'border' : 'border-2 border-dashed'
+              imageFile ? "border" : "border-2 border-dashed"
             } border-primary rounded-lg bg-bgGradientFinish flex flex-col justify-center items-center`}
           >
             {imageFile ? (
@@ -102,10 +122,16 @@ const AddCategoriesForm: React.FC = () => {
           </div>
         </div>
         <div className="flex justify-end items-center gap-5 mt-5">
-          <button type="button" className="flex items-center gap-3 px-4 py-2 rounded-lg bg-cancelButton text-red-700 hover:text-red-800">
+          <button
+            type="button"
+            className="flex items-center gap-3 px-4 py-2 rounded-lg bg-cancelButton text-red-700 hover:text-red-800"
+          >
             <CiEraser /> <p>Cancel</p>
           </button>
-          <button type="submit" className="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary hover:bg-bgGradient text-white">
+          <button
+            type="submit"
+            className="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary hover:bg-bgGradient text-white"
+          >
             <FiSave /> <p>Save</p>
           </button>
         </div>
