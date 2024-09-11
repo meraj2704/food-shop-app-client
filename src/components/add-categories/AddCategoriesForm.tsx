@@ -25,9 +25,9 @@ const AddCategoriesForm: React.FC = () => {
     formData.append('name', data.name);
     formData.append('shortNote', data.shortNote);
 
-    if (imageFile) {
-      formData.append('file', imageFile);
-    }
+    // if (imageFile) {
+    //   formData.append('file', imageFile);
+    // }
     fetch(`${baseUrl}/category`, {
       method: 'POST',
       // headers: {

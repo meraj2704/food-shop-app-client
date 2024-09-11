@@ -171,6 +171,7 @@ console.log("categories", allCategories)
             data={data}
             table={table}
             title={"Add New Category"}
+            path='/admin/add-categories'
             open={addModalOpen}
             onOpenChange={setAddModalOpen}
           >
