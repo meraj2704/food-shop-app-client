@@ -1,99 +1,103 @@
-// components/AddFoodForm.tsx
 "use client";
 
-import { useTheme } from "next-themes";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import CustomSelect from "../ui/CustomSelect";
 import { useDropzone } from "react-dropzone";
-import { Switch } from "@/components/ui/switch";
 import { CiEraser } from "react-icons/ci";
 import { FiSave } from "react-icons/fi";
-// import { Calendar } from "@/components/ui/calendar"
+import { useQuery } from "@tanstack/react-query";
+import { getCategories, useAddMethod } from "@/api/api";
+import Input from "../ui/Input";
+import SelectController from "../ui/SelectController";
+import TextArea from "../ui/TextArea";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Schema } from "./Schema";
+import Image from "next/image";
+import Loader from "../ui/Loader";
 
 const AddFoodForm = () => {
-  const { theme } = useTheme();
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [isChecked, setIsChecked] = useState(false);
-  const [images, setImages] = useState<Array<string | ArrayBuffer | null>>([]);
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(Schema),
+  });
 
-  const categories = [
-    { value: "", label: "Select category" },
-    { value: "Italian", label: "Italian" },
-    { value: "BBQ", label: "BBQ" },
-    { value: "Mexican", label: "Mexican" },
-  ];
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { isLoading: allCategoriesLoading, data: allCategories } = useQuery({
+    queryKey: ["allCategories"],
+    queryFn: () => getCategories(),
+  });
 
   const onDrop = (acceptedFiles: File[]) => {
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImages((prevImages) => [...prevImages, reader.result]);
-      };
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    });
+    const file = acceptedFiles[0];
+    setImageFile(file);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
-    accept: {
-      "image/*": [],
-    },
+    accept: { "image/*": [] },
     onDrop,
-    maxFiles: 3,
-    multiple: false,
+    maxFiles: 1, 
   });
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
+
+  const { mutate } = useAddMethod({
+    endpoint: "food",
+    key: "allFoods",
+  });
+
+  const onSubmit = (data: any) => {
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("category_id", data.category_id);
+    formData.append("price", data.price);
+    formData.append("quantity", data.quantity);
+    formData.append("unit", data.unit);
+    formData.append("description", data.description);
+    if (imageFile) {
+      formData.append("file", imageFile);
+    }
+
+    mutate(formData, {
+      onSuccess: () => {
+        setIsLoading(false);
+        alert("Category added successfully");
+        reset(); // Reset the form without default values
+        setImageFile(null); // Reset the image
+      },
+      onError: () => {
+        setIsLoading(false);
+        alert("Error adding category");
+      },
+    });
+  };
+
+  if (allCategoriesLoading || isLoading) return <Loader />;
 
   return (
-    <div className="w-full flex gap-5 items-start mt-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full flex gap-5 mt-5">
       <div className="w-1/3 flex flex-col gap-4 p-5 border-[1px] border-borderColor rounded-lg">
         <div
           {...getRootProps()}
-          className="flex justify-center items-center px-10 py-16 border-[1px] border-borderColor rounded-lg"
+          className="px-10 py-16 border-[1px] border-borderColor rounded-lg"
         >
           <input {...getInputProps()} />
-          <div
-            id="drop-area"
-            className={`w-56 h-56 border-2 border-dashed border-primary rounded-lg bg-bgGradientFinish flex justify-center items-center`}
-          >
-            <h1 className="text-textColor">Upload Image</h1>
-          </div>
-        </div>
-        <div>
-          <h1 className="text-textColor">Additional Images</h1>
-          <div className="w-full grid grid-cols-2 items-center gap-5 mt-5">
-            {images.length === 0 && (
-              <>
-                <div className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg"></div>
-                <div className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg"></div>
-              </>
-            )}
-            {images.length === 1 && (
-              <>
-                <div className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg"></div>
-                <div className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg">
-                  {typeof images[0] === "string" && (
-                    <img src={images[0]} className="w-full h-full" />
-                  )}
-                </div>
-              </>
-            )}
-            {images.length > 1 && (
-              <>
-                {images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="col-span-1 h-40 border-borderColor border-dashed border-[1px] rounded-lg"
-                  >
-                    {typeof image === "string" && (
-                    <img src={image} className="w-full h-full" />
-                  )}
-                  </div>
-                ))}
-              </>
+          <div className="w-56 h-56 border-2 border-dashed border-primary rounded-lg bg-bgGradientFinish flex justify-center items-center">
+            {imageFile ? (
+              <Image
+                className="w-full h-full rounded-lg object-cover"
+                src={URL.createObjectURL(imageFile)}
+                alt="Uploaded Image"
+                width={200}
+                height={200}
+              />
+            ) : (
+              <h1 className="text-textColor">Upload Image</h1>
             )}
           </div>
         </div>
@@ -102,96 +106,85 @@ const AddFoodForm = () => {
       <div className="w-2/3">
         <div className="w-full flex gap-5 border-[1px] border-borderColor p-5 rounded-lg">
           <div className="w-1/2">
-            <div className="flex flex-col gap-2 mb-6">
-              <label className="text-base text-textColor">Product Name</label>
-              <input
-                type="text"
-                className={`w-full bg-bgColor border-[1px] ${
-                  theme === "dark" ? "border-gray-800" : "border-gray-200"
-                } rounded-lg px-4 py-2 focus:outline-none focus:border-primary text-textColor text-base`}
-                placeholder="Product name"
-              />
-            </div>
-            <CustomSelect
-              label="Product Category"
-              options={categories}
-              value={selectedCategory}
-              onChange={setSelectedCategory}
+            <Input
+              type="text"
+              name="name"
+              label="Product Name"
+              control={control}
+              placeholder="Enter product name"
+              errors={errors}
             />
-            <div className="w-full flex justify-between items-center gap-5">
-              <div className="w-1/2 flex flex-col gap-2 mb-6">
-                <label className="text-base text-textColor">
-                  Selling price
-                </label>
-                <input
-                  type="text"
-                  className={`w-full bg-bgColor border-[1px] ${
-                    theme === "dark" ? "border-gray-800" : "border-gray-200"
-                  } rounded-lg px-4 py-2 focus:outline-none focus:border-primary text-textColor text-base`}
-                  placeholder="Selling price"
-                />
-              </div>
-              <div className="w-1/2 flex flex-col gap-2 mb-6">
-                <label className="text-base text-textColor">Cost price</label>
-                <input
-                  type="text"
-                  className={`w-full bg-bgColor border-[1px] ${
-                    theme === "dark" ? "border-gray-800" : "border-gray-200"
-                  } rounded-lg px-4 py-2 focus:outline-none focus:border-primary text-textColor text-base`}
-                  placeholder="Cost price"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col gap-2 mb-6">
-              <label className="text-base text-textColor">Quantity</label>
-              <input
-                type="text"
-                className={`w-full bg-bgColor border-[1px] ${
-                  theme === "dark" ? "border-gray-800" : "border-gray-200"
-                } rounded-lg px-4 py-2 focus:outline-none focus:border-primary text-textColor text-base`}
-                placeholder="Quantity"
-              />
-            </div>
-            <div className="flex flex-col gap-2 mb-6">
-              <label className="text-base text-textColor">Delivery type</label>
-              <input
-                type="text"
-                className={`w-full bg-bgColor border-[1px] ${
-                  theme === "dark" ? "border-gray-800" : "border-gray-200"
-                } rounded-lg px-4 py-2 focus:outline-none focus:border-primary text-textColor text-base`}
-                placeholder="Delivery type"
-              />
-            </div>
+
+            <SelectController
+              name="category_id"
+              control={control}
+              options={allCategories}
+              label="Product Category"
+              valueKey="_id"
+              labelKey="name"
+              defaultValue=""
+            />
+
+            <Input
+              type="number"
+              name="price"
+              label="Selling Price"
+              control={control}
+              placeholder="Enter Product Selling price"
+              errors={errors}
+            />
+
+            <Input
+              type="number"
+              name="quantity"
+              label="Quantity"
+              control={control}
+              placeholder="Enter Product Quantity"
+              errors={errors}
+            />
+            <Input
+              type="text"
+              name="unit"
+              label="Unit"
+              control={control}
+              placeholder="Enter Product Unit"
+              errors={errors}
+            />
           </div>
+
           <div className="w-1/2">
-            <div className="flex flex-col gap-2 mb-6">
-              <label className="text-base text-textColor">
-                Product Description
-              </label>
-              <textarea
-                rows={16}
-                cols={50}
-                className={`w-full bg-bgColor border-[1px] ${
-                  theme === "dark" ? "border-gray-800" : "border-gray-200"
-                } rounded-lg px-4 py-2 focus:outline-none focus:border-primary text-textColor text-base resize-none`}
-                placeholder="Product description"
-              />
-            </div>
-            {/* <div className="w-full flex justify-between items-center">
-            <Switch />
-          </div> */}
+            <TextArea
+              name="description"
+              label="Product Description"
+              control={control}
+              errors={errors}
+              placeholder="Enter product description"
+              rows={16}
+              cols={50}
+            />
           </div>
         </div>
+
         <div className="flex justify-end items-center gap-5 mt-5">
-          <button className="flex items-center gap-3 px-4 py-2 rounded-lg bg-cancelButton text-red-700">
+          <button
+            type="button"
+            onClick={() => {
+              reset(); // Reset the form without default values
+              setImageFile(null); // Reset the image state
+            }}
+            className="flex items-center gap-3 px-4 py-2 rounded-lg bg-cancelButton text-red-700"
+          >
             <CiEraser /> <p>Cancel</p>
           </button>
-          <button className="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary text-white">
+          <button
+            type="submit"
+            className="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary text-white"
+          >
             <FiSave /> <p>Save</p>
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

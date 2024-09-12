@@ -38,7 +38,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ label, options, value, onCh
     };
   }, []);
 
-  const selectedOption = options.find(option => option.value === value);
+  const selectedOption = options?.find(option => option.value === value);
 
   return (
     <div className="mb-4">
@@ -55,7 +55,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ label, options, value, onCh
         </button>
         {isOpen && (
           <ul className="absolute z-10 mt-1 w-full bg-bgColor shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-            {options.map(option => (
+            {options?.map(option => (
               <li
                 key={option.value}
                 className={clsx(

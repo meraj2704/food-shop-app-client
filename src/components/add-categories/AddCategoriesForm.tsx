@@ -6,10 +6,10 @@ import { useDropzone } from "react-dropzone";
 import { CiEraser } from "react-icons/ci";
 import { FiSave } from "react-icons/fi";
 import { categorySchema } from "./categorySchema";
-import TextInput from "../ui/TextInput";
 import { baseUrl, useAddMethod } from "@/api/api";
 import Loader from "../ui/Loader";
 import Image from "next/image";
+import Input from "../ui/Input";
 
 const AddCategoriesForm: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -71,14 +71,16 @@ const AddCategoriesForm: React.FC = () => {
     <div className="w-full mt-5 border-[1px] border-borderColor p-10 rounded-lg">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full flex justify-between gap-5">
-          <TextInput
+          <Input
+            type="text"
             name="name"
             label="Category Name"
             control={control}
             errors={errors}
             placeholder="Category name"
           />
-          <TextInput
+          <Input
+            type="text"
             name="description"
             label="Description"
             control={control}
