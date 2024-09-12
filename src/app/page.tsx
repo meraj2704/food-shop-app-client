@@ -4,7 +4,7 @@ import AboutComp from "@/components/header/AboutComp";
 import AppAddComponent from "@/components/header/AppAddComponent";
 import Banner from "@/components/header/Banner";
 import ComboOfferComponent from "@/components/header/ComboOfferComponent";
-import MenuComp from "@/components/header/MenuComp";
+import MenuComp from "@/components/header/Menu/MenuComp";
 import TestimonialsCom from "@/components/header/TestimonialsCom";
 import Footer from "@/components/shared/Navbar/Footer";
 import Navbar from "@/components/shared/Navbar/Navbar";

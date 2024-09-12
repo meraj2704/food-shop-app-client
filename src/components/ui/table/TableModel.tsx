@@ -2,7 +2,6 @@
 
 import { flexRender } from "@tanstack/react-table";
 import React, { useState } from "react";
-import { PiCaretUpFill, PiCaretDownFill } from "react-icons/pi";
 import {
   TiArrowSortedDown,
   TiArrowSortedUp,

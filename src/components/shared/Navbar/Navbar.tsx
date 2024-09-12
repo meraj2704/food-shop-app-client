@@ -32,10 +32,10 @@ const Navbar = () => {
   return (
     <div
       className={`w-full top-0 z-50  ${
-        isScrolled ? "fixed  shadow-lg" : "absolute bg-transparent"
+        isScrolled ? "fixed bg-bgColor  shadow-lg" : "absolute bg-transparent"
       }`}
     >
-      <nav className="container mx-auto flex justify-between items-center py-4">
+      <nav className="container mx-auto flex justify-between items-center py-4 px-5 md:px-10 xl:px-0">
         <div>
           {theme === "dark" ? (
             <>
@@ -53,7 +53,7 @@ const Navbar = () => {
           <Link href={"/"}>
             <p className="uppercase text-textColor hover:text-primary">Home</p>
           </Link>
-          <Link href={'/admin/dashboard'}>
+          <Link href={"/admin/dashboard"}>
             {" "}
             <p className="uppercase text-textColor hover:text-primary cursor-pointer">
               Admin

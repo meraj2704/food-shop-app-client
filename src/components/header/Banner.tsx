@@ -13,35 +13,32 @@ const Banner = () => {
   return (
     <div className="w-full relative">
       <div className="absolute gradient-bg h-full w-full z-0"></div>
-      <div className=" container mx-auto flex justify-between items-center  py-32 ">
-        
-        <div className="w-1/2 z-10">
-          <div className="flex justify-start items-start">
+      <div className=" container mx-auto grid grid-cols-1 lg:grid-cols-2 py-32 px-5 md:px-10 xl:px-0">     
+        <div className="z-10">
+          <div className="flex justify-center lg:justify-start items-start">
             {" "}
             <HeaderTag header="#Special Food 🍇" />
           </div>
-          <div className="mt-10 z-10">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl/normal font-bold text-textColor leading-6">
+          <div className="mt-5 md:mt-10 z-10">
+            <h1 className="text-3xl/normal md:text-5xl/normal lg:text-6xl/normal text-center lg:text-start font-bold text-textColor leading-6">
               We Offer <span className="word-with-image">Delicious</span> <br />
               <span className="text-primary">Food</span> And Quick Service
             </h1>
           </div>
-          <p className="font-semibold text-textColor mt-5 opacity-75">
+          <p className="font-semibold text-textColor mt-5 opacity-75 text-center lg:text-start">
             Imagine you don’t need a diet because we provide healthy and
             delicious food for you!.
           </p>
-          <div className="flex items-center gap-5 mt-5">
+          <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-5 mt-5">
             <RegularButton btnTitle="Order Now" />
             <div className="flex gap-5 items-center">
               <div className="flex justify-center items-center p-4 border-[2px] border-primary rounded-full">
-                {/* <PlayArrowIcon
-                  style={{ color: "#F58220", fontSize: "2rem" }}
-                ></PlayArrowIcon> */}
+                
               </div>
               <p className="text-primary font-bold">How To Play</p>
             </div>
           </div>
-          <div className="flex gap-5 mt-20">
+          <div className="flex justify-center lg:justify-start gap-5 mt-10 xl:mt-20">
             {/* <AvatarComp></AvatarComp> */}
             <div className="flex flex-col ">
               <h1 className="text-base font-semibold text-textColor opacity-75">
@@ -57,7 +54,7 @@ const Banner = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/2 flex justify-center items-center relative py-10">
+        <div className="flex justify-center items-center relative py-10">
           <div className="absolute top-0 left-0">
             <h1>🔥</h1>
           </div>
@@ -83,19 +80,19 @@ const Banner = () => {
               <h1 className="font-semibold text-textColor">MCD Veg Burger</h1>
               <div className="flex">
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>
               </div>
               <p>
@@ -103,7 +100,7 @@ const Banner = () => {
               </p>
             </div>
           </div>
-          <div className="absolute p-2 bg-bgColor shadow-xl rounded-full flex justify-between items-center  right-[5%] bottom-[25%]">
+          <div className="absolute p-2 bg-bgColor shadow-xl rounded-full hidden  md:flex justify-between items-center  right-[5%] bottom-[25%]">
             <div className="rounded-full">
               <Image
                 className="rounded-full"
@@ -121,19 +118,19 @@ const Banner = () => {
               </p>
               <div className="flex">
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>{" "}
                 <CiStar 
-                  style={{ color: "#FACC15", fontSize: "14px" }}
+                  className="text-primary text-xs"
                 ></CiStar>
               </div>
             </div>
