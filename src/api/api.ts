@@ -60,3 +60,24 @@ export const getCategories = async () => {
     throw error; // Re-throw the error to let React Query handle it
   }
 };
+
+
+// ------------------------------
+// ------------ foods -----------
+// ------------------------------
+
+export const getFoods = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/food`, getOption);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data)
+    return data?.data;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    throw error; // Re-throw the error to let React Query handle it
+  }
+};

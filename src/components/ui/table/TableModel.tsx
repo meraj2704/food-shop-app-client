@@ -36,7 +36,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
 						No information available
 					</div>
 				) : ( */}
-        <table className="data-table w-full">
+        <table className="data-table w-full" style={{ borderSpacing: '0 10px' }}>
           <thead className="bg-bgGradient border border-borderColor">
             {table
               ?.getHeaderGroups()
@@ -104,13 +104,13 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
               ))}
           </thead>
 
-          <tbody>
+          <tbody >
             {table
               .getRowModel()
               .rows.map((row: { id: string; getVisibleCells: () => any[] }) => (
                 <tr
                   key={row.id}
-                  className={`border border-borderColor hover:bg-bgGradient`}
+                  className={`border border-borderColor hover:bg-bgGradientFinish`}
                   onClick={() => handleRowClick(row.id)}
                 >
                   {row.getVisibleCells().map((cell) => (
