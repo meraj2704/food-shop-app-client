@@ -30,6 +30,32 @@
   --cancel-button: #1a0c1c;
 }
 
+/* For Chrome, Safari, and other WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar handle */
+  border-radius: 10px;    /* Rounded corners of the scrollbar */
+  border: 3px solid #f1f1f1; /* Space around the scrollbar handle */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Hover color of the scrollbar handle */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;       /* Makes the scrollbar thinner */
+  scrollbar-color: #f58220 #f1f1f1; /* Color of the handle and track respectively */
+}
+
+
 .word-with-image {
   position: relative;
   display: inline-block;

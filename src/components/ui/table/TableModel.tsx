@@ -26,7 +26,7 @@ const TableModel: React.FC<TableModelProps> = ({ table }) => {
       }
     });
   };
-
+// 
   return (
     <div className="rounded-md bg-bgColor border border-borderColor p-2">
       <div className="max-w-full overflow-x-auto">
