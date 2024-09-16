@@ -8,7 +8,7 @@ const AdminFooter = () => {
       className={`h-full border-t-[1px]  border-borderColor flex justify-between items-center px-10 py-5`}
     >
       
-      <h1>Developed by <span className="text-primary">Meraj Hossain</span> & design copy from Theme Forest</h1>
+      <h1>Developed by <a href="https://portfolio2-one-rust.vercel.app/" target="blank" className="text-primary">Meraj Hossain</a></h1>
     </div>
   );
 };

@@ -35,17 +35,19 @@ const AdminSideBar: React.FC = () => {
         theme === "dark" ? "border-r-gray-800" : "border-r-gray-200"
       }`}
     >
-      <div
-        className={`h-20 flex justify-center items-center border-dashed border-b-[1px] ${
-          theme === "dark" ? "border-b-gray-800" : "border-b-gray-200"
-        }`}
-      >
-        {theme === "dark" ? (
-          <Image src={logoLight} alt="logo" width={100} height={100} />
-        ) : (
-          <Image src={logo} alt="logo" width={100} height={100} />
-        )}
-      </div>
+      <Link href={'/'}>
+        <div
+          className={`h-20 flex justify-center items-center border-dashed border-b-[1px] ${
+            theme === "dark" ? "border-b-gray-800" : "border-b-gray-200"
+          }`}
+        >
+          {theme === "dark" ? (
+            <Image src={logoLight} alt="logo" width={100} height={100} />
+          ) : (
+            <Image src={logo} alt="logo" width={100} height={100} />
+          )}
+        </div>
+      </Link>
       <div className="grow p-5 flex flex-col gap-4">
         <Link href={`/admin/dashboard`}>
           {" "}
