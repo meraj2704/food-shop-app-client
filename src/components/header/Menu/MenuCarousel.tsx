@@ -9,13 +9,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-export function CarouselSize() {
+export function MenuCarousel() {
   return (
     <Carousel
       opts={{
         align: "start",
       }}
-      className="w-full max-w-sm"
+      className="w-full"
     >
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (

@@ -42,9 +42,9 @@ const AdminSideBar: React.FC = () => {
           }`}
         >
           {theme === "dark" ? (
-            <Image src={logoLight} alt="logo" width={100} height={100} />
+            <Image src={logoLight} alt="logo" width={100} height={100} className="object-cover" />
           ) : (
-            <Image src={logo} alt="logo" width={100} height={100} />
+            <Image src={logo} alt="logo" width={100} height={100} className="object-cover"/>
           )}
         </div>
       </Link>

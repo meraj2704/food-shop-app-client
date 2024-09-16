@@ -1,6 +1,7 @@
 import HeaderTag from "@/components/button/HeaderTag";
 import React from "react";
 import MenuBar from "./MenuBar";
+import { MenuCarousel } from "./MenuCarousel";
 
 const MenuComp = () => {
   return (
@@ -12,7 +13,9 @@ const MenuComp = () => {
         <div className="col-span-1 h-full">
           <MenuBar />
         </div>
-        <div className="col-span-3"></div>
+        <div className="col-span-3">
+          <MenuCarousel/>
+        </div>
       </div>
     </div>
   );
