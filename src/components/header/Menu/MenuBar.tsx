@@ -22,7 +22,7 @@ const MenuBar = () => {
       {allCategories?.map((category: any, index: number) => (
         <div
           key={index}
-          className="text-textColor text-xl font-medium flex justify-start items-center gap-10 pl-10 cursor-pointer"
+          className="text-textColor text-xl font-medium flex justify-start items-center gap-10 cursor-pointer"
         >
           <div>
             <Image
