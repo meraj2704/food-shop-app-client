@@ -4,12 +4,14 @@ interface MainState {
   search: boolean;
   add: boolean;
   toggle:boolean;
+  selectedCategory:string;
 }
 
 const initialState: MainState = {
   search: false,
   add: false,
-  toggle:false
+  toggle:false,
+  selectedCategory: '',
 };
 
 export const MainSlice = createSlice({
@@ -31,6 +33,9 @@ export const MainSlice = createSlice({
     handleToggle: (state) => {
       state.toggle =!state.toggle;
     },
+    handleCategorySelect: (state, action) => {
+      state.selectedCategory = action.payload;
+    },
   },
 });
 
@@ -39,7 +44,8 @@ export const {
   handleInitialSearchStop,
   handleAddModalOpen,
   handleAddModalClose,
-  handleToggle
+  handleToggle,
+  handleCategorySelect
 } = MainSlice.actions;
 
 export default MainSlice.reducer;

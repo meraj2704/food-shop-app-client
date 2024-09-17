@@ -1,10 +1,13 @@
 "use client";
 import { getCategories } from "@/api/api";
+import { handleCategorySelect } from "@/redux/Reducer/MainSlice";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const MenuBar = () => {
+  const dispatch = useDispatch();
   const {
     isLoading,
     isError,
@@ -14,28 +17,37 @@ const MenuBar = () => {
     queryKey: ["allCategories"],
     queryFn: () => getCategories(),
   });
+  if (allCategories) {
+    dispatch(handleCategorySelect(allCategories[0]._id));
+  }
+  const handleUpdateCategory = (id: string) => {
+    dispatch(handleCategorySelect(id));
+  };
   console.log("allCategories", allCategories);
   return (
     <div className="w-full ">
-        <h1 className="text-xl md:text-2xl lg:text-3xl text-textColor font-semibold my-5">Special Menu</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-textColor font-semibold my-5">
+        Special Menu
+      </h1>
       <div className="max-h-[500px] overflow-y-scroll space-y-5">
-      {allCategories?.map((category: any, index: number) => (
-        <div
-          key={index}
-          className="text-textColor text-xl font-medium flex justify-start items-center gap-10 cursor-pointer"
-        >
-          <div>
-            <Image
-              src={category.image_url}
-              alt={category.name}
-              width={70}
-              height={70}
-              className="w-[60px] h-[60px] rounded-full"
-            />
+        {allCategories?.map((category: any, index: number) => (
+          <div
+          onClick={()=> handleUpdateCategory(category._id)}
+            key={index}
+            className="text-textColor text-xl font-medium flex justify-start items-center gap-10 cursor-pointer"
+          >
+            <div>
+              <Image
+                src={category.image_url}
+                alt={category.name}
+                width={70}
+                height={70}
+                className="w-[60px] h-[60px] rounded-full"
+              />
+            </div>
+            <p className="hover:text-primary">{category.name}</p>
           </div>
-          <p className="hover:text-primary">{category.name}</p>
-        </div>
-      ))}
+        ))}
       </div>
     </div>
   );

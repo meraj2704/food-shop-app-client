@@ -1,6 +1,5 @@
+'use client'
 import * as React from "react"
-
-
 import {
   Carousel,
   CarouselContent,
@@ -8,8 +7,24 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import Cart from "./Cart"
+import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
+import { getCategories, getFoodsByCategory } from "@/api/api";
 
 export function MenuCarousel() {
+  const selectedCategory = useSelector((state:any)=> state.Initial.selectedCategory)
+  console.log("selectedCategory", selectedCategory)
+  const {
+    isLoading,
+    isError,
+    data: foodsByCategory,
+    refetch,
+  } = useQuery({
+    queryKey: ["foodsByCategory", selectedCategory],
+    queryFn: () => getFoodsByCategory(selectedCategory),
+  });
+  console.log("foodsByCategory", foodsByCategory)
   return (
     <Carousel
       opts={{
@@ -17,11 +32,11 @@ export function MenuCarousel() {
       }}
       className="w-full"
     >
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+      <CarouselContent className=" mt-12">
+        {foodsByCategory?.map((food:any, index:string) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
-              <h1>Hello</h1>
+             <Cart food={food}/>
             </div>
           </CarouselItem>
         ))}
