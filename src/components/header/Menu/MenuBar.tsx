@@ -1,5 +1,6 @@
 "use client";
 import { getCategories } from "@/api/api";
+import { Skeleton } from "@/components/ui/skeleton";
 import { handleCategorySelect } from "@/redux/Reducer/MainSlice";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
@@ -8,9 +9,16 @@ import { useSelector, useDispatch } from "react-redux";
 
 const MenuBar = () => {
   const dispatch = useDispatch();
-  const selectedCategory = useSelector((state: any) => state.Initial.selectedCategory);
+  const selectedCategory = useSelector(
+    (state: any) => state.Initial.selectedCategory
+  );
 
-  const { isLoading, isError, data: allCategories, refetch } = useQuery({
+  const {
+    isLoading,
+    isError,
+    data: allCategories,
+    refetch,
+  } = useQuery({
     queryKey: ["allCategories"],
     queryFn: () => getCategories(),
   });
@@ -26,6 +34,18 @@ const MenuBar = () => {
     dispatch(handleCategorySelect(id));
     console.log("Selected Category ID:", id);
   };
+  console.log("Loading State:", isLoading);
+
+  if (isLoading)
+    return (
+      <div className="w-full space-y-2">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+      </div>
+    );
 
   return (
     <div className="w-full">
@@ -38,10 +58,16 @@ const MenuBar = () => {
             onClick={() => handleUpdateCategory(category._id)}
             key={index}
             className={`text-textColor text-xl font-medium flex justify-start items-center gap-8 cursor-pointer rounded-full p-2 mr-20 ${
-              selectedCategory === category._id ? 'bg-primary text-white' : 'hover:text-primary text-textColor'
+              selectedCategory === category._id
+                ? "bg-primary text-white"
+                : "hover:text-primary text-textColor"
             }`}
           >
-            <div className={`p-2 rounded-full ${selectedCategory === category._id ? 'bg-white': 'bg-bgColor'}`}>
+            <div
+              className={`p-2 rounded-full ${
+                selectedCategory === category._id ? "bg-white" : "bg-bgColor"
+              }`}
+            >
               <Image
                 src={category.image_url}
                 alt={category.name}
