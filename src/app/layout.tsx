@@ -4,6 +4,7 @@ import "./globals.css";
 import ThemeSwitcher from "@/components/darkmode/ThemeSwitcher";
 import ReactQueryProvider from "./ReactQueryProvider";
 import LayoutProvider from "./LayoutProvider";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 const playfairDisplay = Playfair_Display({subsets: ["latin"] });
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <LayoutProvider>{children}</LayoutProvider>
         </ReactQueryProvider>
+        <ToastContainer position="top-right" autoClose={5000} />
       </body>
     </html>
   );

@@ -15,6 +15,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Schema } from "./Schema";
 import Image from "next/image";
 import Loader from "../ui/Loader";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddFoodForm = () => {
   const {
@@ -51,6 +53,7 @@ const AddFoodForm = () => {
   });
 
   const onSubmit = (data: any) => {
+    console.log("clicked")
     setIsLoading(true);
     const formData = new FormData();
     formData.append("name", data.name);
@@ -66,13 +69,15 @@ const AddFoodForm = () => {
     mutate(formData, {
       onSuccess: () => {
         setIsLoading(false);
-        alert("Category added successfully");
+        toast.success("Food added successfully!")
+        // alert("Category added successfully");
         reset(); // Reset the form without default values
         setImageFile(null); // Reset the image
       },
       onError: () => {
         setIsLoading(false);
-        alert("Error adding category");
+        toast.error("Error adding category!")
+        // alert("Error adding category");
       },
     });
   };
@@ -184,6 +189,7 @@ const AddFoodForm = () => {
           </button>
         </div>
       </div>
+      
     </form>
   );
 };
