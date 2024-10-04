@@ -13,7 +13,7 @@ const Banner = () => {
   return (
     <div className="w-full relative">
       <div className="absolute gradient-bg h-full w-full z-0"></div>
-      <div className=" container mx-auto grid grid-cols-1 lg:grid-cols-2 py-32 px-5 md:px-10 xl:px-0">     
+      <div className=" container mx-auto grid grid-cols-1 lg:grid-cols-2 py-32 px-5 md:px-10 xl:px-0">
         <div className="z-10">
           <div className="flex justify-center lg:justify-start items-start">
             {" "}
@@ -32,9 +32,7 @@ const Banner = () => {
           <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-5 mt-5">
             <RegularButton btnTitle="Order Now" />
             <div className="flex gap-5 items-center">
-              <div className="flex justify-center items-center p-4 border-[2px] border-primary rounded-full">
-                
-              </div>
+              <div className="flex justify-center items-center p-4 border-[2px] border-primary rounded-full"></div>
               <p className="text-primary font-bold">How To Play</p>
             </div>
           </div>
@@ -66,7 +64,13 @@ const Banner = () => {
           </div>
           <div className="absolute h-4 w-4 rounded-md bg-primary rotate-45 right-[5%]"></div>
           <div className="absolute h-4 w-4 rounded-full bg-primary rotate-45 right-[7%] bottom-[10%]"></div>
-          <Image src={bannerImage} width={497} height={537} alt="banner image"></Image>
+          <Image
+            src={bannerImage}
+            width={1280}
+            height={850}
+            alt="banner image"
+            className="object-fill"
+          ></Image>
           <div className="absolute p-2 bg-bgColor shadow-2xl rounded-full flex justify-between items-center bottom-0 left-0">
             <div className="p-3 bg-[#F7E2D0] rounded-full">
               <Image
@@ -79,21 +83,11 @@ const Banner = () => {
             <div className="px-4">
               <h1 className="font-semibold text-textColor">MCD Veg Burger</h1>
               <div className="flex">
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>
               </div>
               <p>
                 <span className="text-primary">$</span> 8.4
@@ -117,21 +111,11 @@ const Banner = () => {
                 Healthy and Delicious Food
               </p>
               <div className="flex">
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>{" "}
-                <CiStar 
-                  className="text-primary text-xs"
-                ></CiStar>
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>{" "}
+                <CiStar className="text-primary text-xs"></CiStar>
               </div>
             </div>
           </div>
