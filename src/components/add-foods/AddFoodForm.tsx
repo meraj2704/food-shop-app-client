@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import CustomSelect from "../ui/CustomSelect";
+import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import { CiEraser } from "react-icons/ci";
 import { FiSave } from "react-icons/fi";
@@ -15,7 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Schema } from "./Schema";
 import Image from "next/image";
 import Loader from "../ui/Loader";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddFoodForm = () => {
