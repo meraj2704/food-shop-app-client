@@ -13,14 +13,14 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="relative ">
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
       <Banner></Banner>
       <AboutComp></AboutComp>
-      <MenuComp></MenuComp>
-      <TestimonialsCom></TestimonialsCom>
-      <ComboOfferComponent />
-      <AppAddComponent/>
-      <Footer/>
+      {/* <MenuComp></MenuComp> */}
+      {/* <TestimonialsCom></TestimonialsCom> */}
+      {/* <ComboOfferComponent /> */}
+      {/* <AppAddComponent/> */}
+      {/* <Footer/> */}
       <div className="fixed bottom-10 right-10">
         <ThemeSwitcher/>
       </div>
