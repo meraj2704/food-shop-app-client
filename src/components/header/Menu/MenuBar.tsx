@@ -49,7 +49,7 @@ const MenuBar = () => {
 
   return (
     <div className="w-full">
-      <h1 className="text-xl md:text-2xl lg:text-3xl text-textColor font-semibold my-5">
+      <h1 className="text-lg md:text-2xl lg:text-3xl text-textColor font-semibold my-5">
         Special Menu
       </h1>
       <div className="max-h-[500px] overflow-y-scroll space-y-5">
@@ -73,10 +73,10 @@ const MenuBar = () => {
                 alt={category.name}
                 width={50}
                 height={50}
-                className="w-[50px] h-[50px] rounded-full"
+                className="w-[20px] h-[30px] rounded-full"
               />
             </div>
-            <p>{category.name}</p>
+            <p className="text-xs md:text-base">{category.name}</p>
           </div>
         ))}
       </div>
